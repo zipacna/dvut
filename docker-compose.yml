@@ -1,0 +1,24 @@
+# Source: https://linuxhandbook.com/nginx-reverse-proxy-docker/
+version: "3.7"
+
+# Check output of Live Containers (service e.g. letsencrypt): sudo docker-compose logs <service>
+
+services:
+  dvut-s:
+    build: .
+    image: "dvut-i:v1" # name of the image being build
+    container_name: "dvut-c"
+    restart: "always"
+    volumes:
+    - "./:/rcnet" # https://stackoverflow.com/a/40905828
+    - "./storage/:/storage"
+    environment:
+      VIRTUAL_HOST: "dvut.risingcode.net"
+      LETSENCRYPT_HOST: "dvut.risingcode.net"
+    networks:
+      - "rcnet"
+
+networks:
+  rcnet:
+    name: "rcnet"
+    external: true

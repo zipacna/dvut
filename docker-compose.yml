@@ -9,6 +9,7 @@ services:
     image: "dvut-i:v1" # name of the image being build
     container_name: "dvut-c"
     restart: "always"
+    user: "ref"
     volumes:
     - "./:/rcnet" # https://stackoverflow.com/a/40905828
     - "./storage/:/storage"

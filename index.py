@@ -10,23 +10,22 @@ from flask import Flask
 
 
 class Route:
-    def __init__(self, flask_app: Flask):
+    def __init__(self, flask_app: Flask, storage: str):
         self.app = flask_app
+        self.storage = storage
         self.setup_routes()
 
     def setup_routes(self):
         self.app.add_url_rule('/', 'index', self.home)
 
     def home(self):
-        path = join(abspath('rcnet'), 'storage', 'test.txt')
-        print(path)
-        with open(path, 'w+') as f:
+        with open(join(self.storage, 'test.txt'), 'w+') as f:
             f.write('test\n')
         return 'works;\n'
 
 
 app = Flask(__name__)
-Route(app)
+Route(app, storage='storage')
 
 
 if __name__ == '__main__':

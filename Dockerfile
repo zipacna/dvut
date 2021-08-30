@@ -29,6 +29,9 @@ USER $user:$user
 
 # Python Version and installing dependencies from Pipfile.
 RUN python -V
+RUN pwd
+RUN ls -lah
+RUN ls -lah /home
 RUN pipenv install --deploy --ignore-pipfile
 
 # Expose port and

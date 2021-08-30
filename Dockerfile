@@ -24,7 +24,7 @@ COPY Pipfile.lock /rcnet/
 
 # Use user inside container as well.
 RUN addgroup $user -g $gid -S
-RUN adduser $user -u $uid -G $user -D -H -S
+RUN adduser $user -u $uid -G $user -D -S
 USER $user:$user
 
 # Python Version and installing dependencies from Pipfile.

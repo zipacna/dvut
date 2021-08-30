@@ -23,9 +23,9 @@ COPY Pipfile /rcnet/
 COPY Pipfile.lock /rcnet/
 
 # Use user inside container as well.
-USER $user:$user
 RUN addgroup $user -g $gid -S
 RUN adduser $user -u $uid -G $user -D -H -S
+USER $user:$user
 RUN chown -R $user:$user /ref
 RUN chown -R $user:$user /storage
 

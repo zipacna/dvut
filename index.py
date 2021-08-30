@@ -4,6 +4,7 @@ Author: Jean Mattes
 Author-URI: https://risingcode.net/
 License: CC-BY-4.0 (Docs) and MIT (Code)
 """
+from os.path import join, abspath
 
 from flask import Flask
 
@@ -17,7 +18,9 @@ class Route:
         self.app.add_url_rule('/', 'index', self.home)
 
     def home(self):
-        with open('test.txt', 'w+') as f:
+        path = join(abspath('rcnet'), 'storage', 'test.txt')
+        print(path)
+        with open(path, 'w+') as f:
             f.write('test\n')
         return 'works;\n'
 

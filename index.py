@@ -8,12 +8,20 @@ License: CC-BY-4.0 (Docs) and MIT (Code)
 from flask import Flask
 
 
-def setup_routes(flask_app: Flask):
-    pass
+class Route:
+    def __init__(self, flask_app: Flask):
+        self.app = flask_app
+        self.setup_routes()
+
+    def setup_routes(self):
+        self.app.add_url_rule('/', 'index', self.home)
+
+    def home(self):
+        return 'works;'
 
 
 app = Flask(__name__)
-setup_routes(app)
+Route(app)
 
 
 if __name__ == '__main__':

@@ -7,7 +7,7 @@ ARG uid=1005
 ARG gid=1006
 
 RUN apk --update add ${packages} && rm -rf /var/cache/apk/*
-RUN apk add --no-cache bash git openssl ca-certificates
+RUN apk add --no-cache bash git openssl ca-certificates vim htop curl
 
 # installation of pipenv via pip3 needs to be this high up so it does not fail.
 RUN pip3 install pipenv
@@ -29,10 +29,8 @@ USER $user:$user
 
 # Python Version and installing dependencies from Pipfile.
 RUN python -V
-RUN pwd
-RUN ls -lah
-RUN ls -lah /home
-RUN pipenv install --deploy --ignore-pipfile
+RUN pwd && ls -lah && ls -lah /home
+RUN time pipenv install --deploy --ignore-pipfile
 
 # Expose port and
 EXPOSE 80

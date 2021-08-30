@@ -26,8 +26,6 @@ COPY Pipfile.lock /rcnet/
 RUN addgroup $user -g $gid -S
 RUN adduser $user -u $uid -G $user -D -H -S
 USER $user:$user
-RUN chown -R $user:$user /ref
-RUN chown -R $user:$user /storage
 
 # Python Version and installing dependencies from Pipfile.
 RUN python -V

@@ -17,7 +17,9 @@ class Route:
         self.app.add_url_rule('/', 'index', self.home)
 
     def home(self):
-        return 'works;'
+        with open('test.txt', 'w+') as f:
+            f.write('test\n')
+        return 'works;\n'
 
 
 app = Flask(__name__)
